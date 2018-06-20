@@ -1,57 +1,90 @@
 {
-  "requires": true,
-  "lockfileVersion": 1,
+  "name": "discord.js",
+  "version": "12.0.0-dev",
+  "description": "A powerful library for interacting with the Discord API",
+  "main": "./src/index",
+  "types": "./typings/index.d.ts",
+  "scripts": {
+    "test": "npm run lint && npm run docs:test",
+    "docs": "docgen --source src --custom docs/index.yml --output docs/docs.json",
+    "docs:test": "docgen --source src --custom docs/index.yml",
+    "lint": "eslint src *.js",
+    "lint:fix": "eslint --fix src",
+    "build:browser": "webpack",
+    "prepublishOnly": "npm run test && NODE_ENV=production npm run build:browser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/discordjs/discord.js.git"
+  },
+  "keywords": [
+    "discord",
+    "api",
+    "bot",
+    "client",
+    "node",
+    "discordapp"
+  ],
+  "author": "Amish Shah <amishshah.2k@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/discordjs/discord.js/issues"
+  },
+  "homepage": "https://github.com/discordjs/discord.js#readme",
+  "runkitExampleFilename": "./docs/examples/ping.js",
+  "unpkg": "./webpack/discord.min.js",
   "dependencies": {
-    "async-limiter": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/async-limiter/-/async-limiter-1.0.0.tgz",
-      "integrity": "sha512-jp/uFnooOiO+L211eZOoSyzpOITMXx1rBITauYykG3BRYPu8h0UcxsPNB04RR5vo4Tyz3+ay17tR6JVf9qzYWg=="
-    },
-    "discord.js": {
-      "version": "11.3.2",
-      "resolved": "https://registry.npmjs.org/discord.js/-/discord.js-11.3.2.tgz",
-      "integrity": "sha512-Abw9CTMX3Jb47IeRffqx2VNSnXl/OsTdQzhvbw/JnqCyqc2imAocc7pX2HoRmgKd8CgSqsjBFBneusz/E16e6A==",
-      "requires": {
-        "long": "4.0.0",
-        "prism-media": "0.0.2",
-        "snekfetch": "3.6.4",
-        "tweetnacl": "1.0.0",
-        "ws": "4.1.0"
-      }
-    },
-    "long": {
-      "version": "4.0.0",
-      "resolved": "https://registry.npmjs.org/long/-/long-4.0.0.tgz",
-      "integrity": "sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA=="
-    },
-    "prism-media": {
-      "version": "0.0.2",
-      "resolved": "https://registry.npmjs.org/prism-media/-/prism-media-0.0.2.tgz",
-      "integrity": "sha512-L6yc8P5NVG35ivzvfI7bcTYzqFV+K8gTfX9YaJbmIFfMXTs71RMnAupvTQPTCteGsiOy9QcNLkQyWjAafY/hCQ=="
-    },
-    "safe-buffer": {
-      "version": "5.1.2",
-      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",
-      "integrity": "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g=="
-    },
-    "snekfetch": {
-      "version": "3.6.4",
-      "resolved": "https://registry.npmjs.org/snekfetch/-/snekfetch-3.6.4.tgz",
-      "integrity": "sha512-NjxjITIj04Ffqid5lqr7XdgwM7X61c/Dns073Ly170bPQHLm6jkmelye/eglS++1nfTWktpP6Y2bFXjdPlQqdw=="
-    },
-    "tweetnacl": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-1.0.0.tgz",
-      "integrity": "sha1-cT2LgY2kIGh0C/aDhtBHnmb8ins="
-    },
-    "ws": {
-      "version": "4.1.0",
-      "resolved": "https://registry.npmjs.org/ws/-/ws-4.1.0.tgz",
-      "integrity": "sha512-ZGh/8kF9rrRNffkLFV4AzhvooEclrOH0xaugmqGsIfFgOE/pIz4fMc4Ef+5HSQqTEug2S9JZIWDR47duDSLfaA==",
-      "requires": {
-        "async-limiter": "1.0.0",
-        "safe-buffer": "5.1.2"
-      }
-    }
+    "form-data": "^2.3.2",
+    "node-fetch": "^2.1.2",
+    "pako": "^1.0.0",
+    "prism-media": "^0.2.0",
+    "tweetnacl": "^1.0.0",
+    "ws": "^4.0.0"
+  },
+  "peerDependencies": {
+    "bufferutil": "^3.0.0",
+    "erlpack": "discordapp/erlpack",
+    "libsodium-wrappers": "^0.7.0",
+    "sodium": "^2.0.0",
+    "uws": "^9.14.0",
+    "zlib-sync": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.0.3",
+    "discord.js-docgen": "discordjs/docgen",
+    "eslint": "^4.17.0",
+    "json-filter-loader": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "browser": {
+    "https": false,
+    "ws": false,
+    "uws": false,
+    "erlpack": false,
+    "prism-media": false,
+    "opusscript": false,
+    "node-opus": false,
+    "tweetnacl": false,
+    "sodium": false,
+    "zlib-sync": false,
+    "src/sharding/Shard.js": false,
+    "src/sharding/ShardClientUtil.js": false,
+    "src/sharding/ShardingManager.js": false,
+    "src/client/voice/ClientVoiceManager.js": false,
+    "src/client/voice/VoiceConnection.js": false,
+    "src/client/voice/networking/VoiceUDPClient.js": false,
+    "src/client/voice/networking/VoiceWebSocket.js": false,
+    "src/client/voice/dispatcher/StreamDispatcher.js": false,
+    "src/client/voice/player/AudioPlayer.js": false,
+    "src/client/voice/receiver/PacketHandler.js": false,
+    "src/client/voice/receiver/Receiver.js": false,
+    "src/client/voice/util/Secretbox.js": false,
+    "src/client/voice/util/VolumeInterface.js": false,
+    "src/client/voice/VoiceBroadcast.js": false
   }
 }
